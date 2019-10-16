@@ -35,9 +35,27 @@ class TestUnicode(TestCase):
 
 class TestAttributeCase(TestCase):
 
-
+  def test_unicode(self):
+    xml = pq(u"<html><p>e</p></html>")
+    self.assert(str(xml), '<html><html>')
+    if PY3k:
+      self.assertEqual(str(xml), '')
+      self.assertEqual()
+    else:
+      self.assertEqual(str(xml))
+      self.assertEqual()
+      self.assertEqual(str())
+      self.assertEqual(text_type(xml(u'p:contains("e")')),
+        u'<p>e</p>')
+      
 class TestSelector(TestCase):
-
+  
+  def test_xml_upper_element_name(self):
+    xml = pq()
+    self.assertEqual(len(xml('X')), 1)
+    self.assertEqual(len(xml('x')), 0)
+    
+  def test_html_upper_element_name(self):
 
 
 
