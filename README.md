@@ -95,6 +95,16 @@ class TestCallback(TestCase):
 
 
 
+
+
+class TestWebScrappingEncoding(TestCase):
+
+  def test_get(self):
+    d = pq(u'http://ru.wikipedia.org/wiki/xxx',
+      method='get')
+    print(d)
+    self.assertEqual(d('#pt-login').text(), u'xxx')
+
 class TestWebScrappingTimeouts(TestCase):
   
   def setUp(self):
